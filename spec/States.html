@@ -189,7 +189,7 @@ h1 { margin-top: 60px; }
 	be a JSON text.
 	When two states are linked by a transition, the
 	output from the first state is passed as input to the second state. The
-	output from the machine's terminal state is treated as the its
+	output from the machine's terminal state is treated as its
 	output. </p> 
       <p>For example, consider a simple state machine that adds two numbers
       together:</p>
@@ -226,13 +226,13 @@ h1 { margin-top: 60px; }
 	components with a JSON text.
 	The syntax is that
 	of <a href="https://github.com/jayway/JsonPath">JsonPath</a>.</p>
-      <h3>Reference Paths</h3>
+      <h3 id='ref-paths'>Reference Paths</h3>
       <p>A Reference Path is a Path with syntax limited in such a way that it
 	can only identify a single node in a JSON structure:</p>
       <ol>
 	<li><p>Object fields can only be accessed via the dot (“.”)
             notation.</p></li>
-	<li><p>The operators “@”, “..”, “,”, “:”, “?”, and "[]" are not
+	<li><p>The operators “@”, “..”, “,”, “:”, and “?” are not
             supported - all Reference Paths MUST be unambiguous
             references to a single value, array, or object (subtree).</p></li>
       </ol>
@@ -252,12 +252,25 @@ $.car.cdr => true</code></pre>
 	later in this document, to control the flow of a state machine or to
 	configure a state's settings or 
 	options.</p>
+      <p>Here are some examples of acceptable Reference Path syntax:</p>
+      <pre><code class="nocheck">$.store.book
+$.store\.book
+$.\stor\e.boo\k
+$.store.book.title
+$.foo.\.bar
+$.foo\@bar.baz\[\[.\?pretty
+$.&amp;Ж中.\uD800\uDF46
+$.ledgers.branch[0].pending.count
+$.ledgers.branch[0]
+$.ledgers[0][22][315].foo
+$['store']['book']
+$['store'][0]['book']</code></pre>
       <h3 id='filters'>Input and Output Processing</h3>
       <p>As described above, data is passed between states as JSON texts.
 	However, a state - in particular, a Task State which sends the data to
 	external code, and receives data back from that code - may want to send
 	only a subset of the incoming data, and transmit only a subset of the
-	data received back..</p>
+	data received back.</p>
       <p>In this discussion, “raw input” means the JSON text that is the input
 	to a state.  “Result” means the JSON text that a state generates,
 	for example from external code invoked by a Task State, or the
@@ -459,13 +472,12 @@ $.car.cdr => true</code></pre>
     }
   ]
 }</code></pre>
-      <p>Suppose that this task fails five successive times, throwing Error
-	Names “ErrorA”, “ErrorB”, “ErrorC”, “ErrorB”, and “ErrorB”.
+      <p>Suppose that this task fails four successive times, throwing Error
+	Names “ErrorA”, “ErrorB”, “ErrorC”, and “ErrorB”.
 	The first two errors match the first retrier and cause waits of one
 	and two seconds.  The third error matches the second retrier and
-	causes a wait of five seconds.  The fourth error matches the first
-	retrier and causes a wait of four seconds. The fifth also matches the
-	first, but its “MaxAttempts” ceiling of two retries has already been
+	causes a wait of five seconds.  The fourth error would match the
+	first retrier but its “MaxAttempts” ceiling of two retries has already been
 	reached, so that Retrier fails, and execution is redirected to the “Z”
 	state via the “Catch” field.</p>
       <p>Note that once the interpreter transitions to another state in any
@@ -622,7 +634,9 @@ $.car.cdr => true</code></pre>
       <p>A Pass State MAY have a field named “Result”.  If present, its value
 	is treated as the output of a virtual task, and placed as prescribed
 	by the “ResultPath” field, if any, to be passed on to the next
-	state.</p> 
+	state. If “Result” is not provided, the output is the input.  Thus if
+	neither “Result” nor “ResultPath” are provided, the Pass state copies its
+	input through to its output.</p> 
 	<p>Here is an example of a Pass
 	State that injects some fixed data into the state machine, probably for
 	testing purposes.</p>
