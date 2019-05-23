@@ -540,6 +540,13 @@ $['store'][0]['book']</code></pre>
   }
 }</code></pre>
 
+      <h4 id="context-object">The Context Object</h4>
+      <p>The Interpreter can provide information to an executing state machine
+	about the execution and other implementation details. This is delivered
+	in the form of a JSON object called the &#x201C;Context Object&#x201D;.  This version
+	of the States Language specification does not specify any contents of
+	the Context Object.</p>
+
       <h4 id="parameters">Parameters</h4>
       <p>The value of the &#x201C;Parameters&#x201D; field (after processing described below)
       becomes the effective input.  Consider the following Task state:</p>
@@ -555,12 +562,16 @@ $['store'][0]['book']</code></pre>
       <p>In this case, the effective input to the code identified in the
 	Resource field would be the object with &#x201C;first&#x201D; and &#x201C;second&#x201D; fields
 	which is the value of the &#x201C;Parameters&#x201D; field.</p>
-      <p>Values from the effective input can be
+      <p>Values from the effective input and the Context Object can be
 	inserted into the &#x201C;Parameters&#x201D; field with a combination of a
 	field-naming convention and JsonPath.</p>
       <p>If any JSON object within the
 	value of Parameters (however deeply nested) has a field whose name ends
-	with the characters &#x201C;.$&#x201D;, its value MUST be a Path.
+	with the characters &#x201C;.$&#x201D;, its value MUST begin with a "$".</p>
+      <p>If the value begins with &#x201C;$$&#x201D;, the first dollar sign is stripped and
+	the remainder MUST be a PATH. In this case, the Path is applied to the
+	Context Object and the result is called the Extracted Value.</p>
+      <p>If the value begins with only one &#x201C;$&#x201D;, the value MUST be a path.
 	In this case, the Path is applied to the effective input and the
 	result is called the Extracted Value.</p>
       <p>If the path is legal but cannot be applied successfully
@@ -580,13 +591,18 @@ $['store'][0]['book']</code></pre>
     "parts": {
       "first.$": "$.vals[0]",
       "last3.$": "$.vals[3:]"
-    }
+    },
+    "weekday.$": "$$.DayOfWeek"
   }
 }</code></pre>
       <p>Suppose that the input to the state is as follows:</p>
       <pre><code class="json">{
   "flagged": 7,
   "vals": [0, 10, 20, 30, 40, 50]
+}</code></pre>
+      <p>Further, suppose that the Context Object is as follows:</p>
+<pre><code class="json">{
+  "DayOfWeek": "TUESDAY"
 }</code></pre>
       <p>In this case, the effective input to the code identified in
         the Resource field would be as follows:</p>
@@ -595,7 +611,8 @@ $['store'][0]['book']</code></pre>
   "parts": {
     "first": 0,
     "last3": [30, 40, 50]
-  }
+  },
+  "weekday": "TUESDAY"
 }</code></pre>
         <h4>Runtime Errors</h4>
       <p>Suppose a state&#x2019;s input
