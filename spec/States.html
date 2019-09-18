@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <html>
   <head>
     <title>Amazon States Language</title>
@@ -22,7 +21,7 @@ td { background: #eee; }
 td.empty { background: #fbb; }
 td.blank { background: #eee; }
 td.field { background: #cef; }
-td.required { background: #cfe; }
+td.required { background: #cfe; } /* #4d8 is good too */
 td.allowed { background: #cfe; }
 span.notfinal {
 color: #f00;
@@ -38,201 +37,42 @@ h1 { margin-top: 60px; }
     </style>
   </head>
   <body>
-    <div id="intro">
+    <div id='intro'>
       <h1>Amazon States Language</h1>
       <p>This document describes a
         <a href="https://tools.ietf.org/html/rfc7159">JSON</a>-based language
         used to describe state machines declaratively. The state machines thus
         defined may be executed by software. In this document, the software is
-        referred to as &#x201C;the interpreter&#x201D;.</p> 
+        referred to as “the interpreter”.</p> 
     </div>
-    <p>Copyright &#xA9; 2016 Amazon.com Inc. or Affiliates.</p>
+    <p>Copyright © 2016 Amazon.com Inc. or Affiliates.</p>
     <p>Permission is hereby granted, free of charge, to any person obtaining a
     copy of this specification and associated documentation files (the
-    &#x201C;specification&#x201D;), to use, copy, publish, and/or distribute, the
+    “specification”), to use, copy, publish, and/or distribute, the
       Specification) subject to the following conditions:</p>
     <p>The above copyright notice and this permission notice shall be included
       in all copies of the Specification. </p>
     <p>You may not modify, merge, sublicense, and/or sell copies of the Specification. </p>
-    <p>THE SPECIFICATION IS PROVIDED &#x201C;AS IS&#x201D;, WITHOUT WARRANTY OF ANY KIND,
+    <p>THE SPECIFICATION IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
     MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
     NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
     DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
     OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SPECIFICATION OR
-      THE USE OR OTHER DEALINGS IN THE SPECIFICATION.&#x200B;</p>
+      THE USE OR OTHER DEALINGS IN THE SPECIFICATION.​</p>
     <p>Any sample code included in the Specification, unless otherwise
       specified, is licensed under the Apache License, Version 2.0.</p>
-    <div id="toc">
-    <?xml version="1.0"??>
-<div>
-  <h2>Table of Contents</h2>
-  <ul>
-    <li>
-      <p>Structure of a State Machine</p>
-      <ul>
-        <li>
-          <p>
-            <a href="#example">
-              <p>Example: Hello World</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#toplevelfields">
-              <p>Top-level fields</p>
-            </a>
-          </p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Concepts</p>
-      <ul>
-        <li>
-          <p>
-            <a href="#states-fields">
-              <p>States</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#transition">
-              <p>Transitions</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#timestamps">
-              <p>Timestamps</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#data">
-              <p>Data</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#path">
-              <p>Paths</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#ref-paths">
-              <p>Reference Paths</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#filters">
-              <p>Input and Output Processing</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#errors">
-              <p>Errors</p>
-            </a>
-          </p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>State Types</p>
-      <ul>
-        <li>
-          <p>
-            <a href="#state-type-table">
-              <p>Table of State Types and Fields</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#pass-state">
-              <p>Pass State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#task-state">
-              <p>Task State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#choice-state">
-              <p>Choice State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#wait-state">
-              <p>Wait State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#succeed-state">
-              <p>Succeed State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#fail-state">
-              <p>Fail State</p>
-            </a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#parallel-state">
-              <p>Parallel State</p>
-            </a>
-          </p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Appendices</p>
-      <ul>
-        <li>
-          <p>
-            <a href="#appendix-a">
-              <p>Appendix A: Predefined Error Codes</p>
-            </a>
-          </p>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
-</div>
-    <div id="structure">
-      <h2 id="structure">Structure of a State Machine</h2>
+    <div id='toc'>
+    </div>
+    <div id='structure'>
+      <h2 id='structure'>Structure of a State Machine</h2>
       <p>A State Machine is represented by a
         <a href="https://tools.ietf.org/html/rfc7159#section-4">JSON
           Object</a>.</p>
-      <h3 id="example">Example: Hello World</h3>
+      <h3 id='example'>Example: Hello World</h3>
       <p>The operation of a state machine is specified by states, which are
-        represented by JSON objects, fields in the top-level &#x201C;States&#x201D; object.
-        In this example, there is one state named &#x201C;Hello World&#x201D;.</p>
+        represented by JSON objects, fields in the top-level “States” object.
+        In this example, there is one state named “Hello World”.</p>
 <pre><code class="statemachine">{
     "Comment": "A simple minimal example of the States language",
     "StartAt": "Hello World",
@@ -249,45 +89,45 @@ h1 { margin-top: 60px; }
         identifying the Start State. It executes that state, and then checks to
         see if the state is marked as an End State. If it is, the machine
         terminates and returns a result. If the state is not an End State, the
-        interpreter looks for a &#x201C;Next&#x201D; field to determine what state to run
+        interpreter looks for a “Next” field to determine what state to run
         next; it repeats this process until it reaches a
         <a href="#terminal-state">Terminal State</a> (Succeed,
         Fail, or an End State) or a runtime error occurs.</p>
       <p>In this example, the machine contains a single state
-        named &#x201C;Hello World&#x201D;.
-        Because &#x201C;Hello World&#x201D; is a Task State, the interpreter 
-        tries to execute it. Examining the value of the &#x201C;Resource&#x201D; field shows
+        named “Hello World”.
+        Because “Hello World” is a Task State, the interpreter 
+        tries to execute it. Examining the value of the “Resource” field shows
         that it points to a Lambda function, so the interpreter attempts
         to invoke that function.  Assuming the Lambda function executes
         successfully, the machine will terminate successfully.</p>
       <p>A State Machine is represented by a JSON object.</p>
-      <h3 id="toplevelfields">Top-level fields</h3>
-      <p>A State Machine MUST have an object field named &#x201C;States&#x201D;, 
+      <h3 id='toplevelfields'>Top-level fields</h3>
+      <p>A State Machine MUST have an object field named “States”, 
           whose fields represent the states.</p>
-      <p>A State Machine MUST have a string field named &#x201C;StartAt&#x201D;, whose value
-          MUST exactly match one of names of the &#x201C;States&#x201D; fields. The
+      <p>A State Machine MUST have a string field named “StartAt”, whose value
+          MUST exactly match one of names of the “States” fields. The
         interpreter starts running the the machine at the named
         state.</p>
       <p>A State Machine MAY have
-        a string field named &#x201C;Comment&#x201D;, 
+        a string field named “Comment”, 
         provided for human-readable description of the
         machine.</p>
-      <p>A State Machine MAY have a string field named &#x201C;Version&#x201D;, which gives
+      <p>A State Machine MAY have a string field named “Version”, which gives
         the version of the States language used in the machine.  This document
-        describes version 1.0, and if omitted, the default value of &#x201C;Version&#x201D;
-        is the string &#x201C;1.0&#x201D;.</p>
-      <p>A State Machine MAY have an integer field named &#x201C;TimeoutSeconds&#x201D;.
+        describes version 1.0, and if omitted, the default value of “Version”
+        is the string “1.0”.</p>
+      <p>A State Machine MAY have an integer field named “TimeoutSeconds”.
         If provided, it provides the maximum number of seconds
         the machine is allowed to run.
         If the machine runs longer than the specified
         time, then the interpreter fails the machine with
         a <code class="nocheck">States.Timeout</code>
-        <a href="#error-names">Error Name</a>.</p> 
+        <a href='#error-names'>Error Name</a>.</p> 
     </div>
-    <div id="body">
-      <h2 id="concepts">Concepts</h2>
-      <h3 id="states-fields">States</h3>
-      <p>States are represented as fields of the top-level &#x201C;States&#x201D; object.
+    <div id='body'>
+      <h2 id='concepts'>Concepts</h2>
+      <h3 id='states-fields'>States</h3>
+      <p>States are represented as fields of the top-level “States” object.
         The state name, whose length MUST BE less than or equal to 128
         Unicode characters, is the field name; state
         names MUST be unique within the scope of the whole state machine.
@@ -302,43 +142,43 @@ h1 { margin-top: 60px; }
 }</code></pre>
       <p>Note that:</p>
       <ol>
-        <li><p>All states MUST have a &#x201C;Type&#x201D; field. This document refers to the
-            values of this field as a state&#x2019;s <em>type</em>, and to a
+        <li><p>All states MUST have a “Type” field. This document refers to the
+            values of this field as a state’s <em>type</em>, and to a
             state such as the one in the example above as a Task
             State.</p></li>
-        <li><p>Any state MAY have a &#x201C;Comment&#x201D; field, to hold a human-readable
+        <li><p>Any state MAY have a “Comment” field, to hold a human-readable
             comment or description.</p></li>
         <li><p>Most state types require additional fields as specified in
             this document. </p></li>
-        <li><p id="terminal-state">Any state except for Choice, Succeed, and
+        <li><p id='terminal-state'>Any state except for Choice, Succeed, and
             Fail MAY have a field
-            named "End" whose value MUST be a boolean.  The term &#x201C;Terminal
-            State&#x201D; means a state with
+            named "End" whose value MUST be a boolean.  The term “Terminal
+            State” means a state with
             with <code class="nocheck">{ "End": true }</code>, or a state with
             <code class="nocheck">{ "Type": "Succeed" }</code>, or a state with
             <code class="nocheck">{ "Type": "Fail" }</code>.</p></li>
       </ol>
-      <h3 id="transition">Transitions</h3>
+      <h3 id='transition'>Transitions</h3>
       <p>Transitions link states together, defining the control flow for the
         state machine. After executing a non-terminal state, the interpreter
         follows a transition to the next state. For most state types,
         transitions are unconditional and specified through the state's
-        &#x201C;Next&#x201D; field.</p>
-      <p>All non-terminal states MUST have a &#x201C;Next&#x201D; field, except for the
-        Choice state.  The value of the &#x201C;Next&#x201D; field MUST exactly and
+        “Next” field.</p>
+      <p>All non-terminal states MUST have a “Next” field, except for the
+        Choice state.  The value of the “Next” field MUST exactly and
         case-sensitively match the name of the another state.</p> 
       <p>States can have multiple incoming transitions from other states.</p>
-      <h3 id="timestamps">Timestamps</h3>
+      <h3 id='timestamps'>Timestamps</h3>
       <p>The Choice and Wait states deal with JSON field values which
         represent timestamps.  These are strings which MUST conform to the
         <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> profile of
-        ISO 8601, with the further restrictions that an uppercase &#x201C;T&#x201D;
+        ISO 8601, with the further restrictions that an uppercase “T”
         character MUST be used to separate date and time, and an uppercase
-        &#x201C;Z&#x201D; character MUST be present in the absence of a numeric time zone
-        offset, for example &#x201C;2016-03-14T01:59:00Z&#x201D;.</p>
-      <h3 id="data">Data</h3>
+        “Z” character MUST be present in the absence of a numeric time zone
+        offset, for example “2016-03-14T01:59:00Z”.</p>
+      <h3 id='data'>Data</h3>
       <p>The interpreter passes data between states to perform calculations or
-        to dynamically control the state machine&#x2019;s flow.  All such data MUST
+        to dynamically control the state machine’s flow.  All such data MUST
         be expressed in JSON.</p>
       <p>When a state machine is started, the caller can provide an initial
         <a href="https://tools.ietf.org/html/rfc7159#section-2">JSON
@@ -364,7 +204,7 @@ h1 { margin-top: 60px; }
     }
   }
 }</code></pre>
-      <p>Suppose the &#x201C;Add&#x201D; Lambda function is defined as:</p>
+      <p>Suppose the “Add” Lambda function is defined as:</p>
       <pre><code class="nocheck">exports.handler = function(event, context) {
   context.succeed(event.val1 + event.val2);
 };</code></pre>
@@ -379,18 +219,18 @@ h1 { margin-top: 60px; }
             typically corresponding to double-precision IEEE-854
             values.  For this and other interoperability concerns, see
             <a href="https://tools.ietf.org/html/rfc7159">RFC 7159</a>.</p></li>
-        <li><p>Standalone "-delimited strings, booleans, and numbers are
+        <li><p>Standalone &quot;-delimited strings, booleans, and numbers are
             valid JSON texts.</p></li>
       </ol>
-      <h3 id="path">Paths</h3>
-      <p>A Path is a string, beginning with &#x201C;$&#x201D;, used to identify
+      <h3 id='path'>Paths</h3>
+      <p>A Path is a string, beginning with “$”, used to identify
         components with a JSON text.
         The syntax is that
         of <a href="https://github.com/jayway/JsonPath">JsonPath</a>.</p>
-      <h3 id="ref-paths">Reference Paths</h3>
+      <h3 id='ref-paths'>Reference Paths</h3>
       <p>A Reference Path is a Path with syntax limited in such a way that it
         can only identify a single node in a JSON structure: The operators
-       &#x201C;@&#x201D;, &#x201C;,&#x201D;, &#x201C;:&#x201D;, and &#x201C;?&#x201D; are not supported - all Reference Paths
+       “@”, “,”, “:”, and “?” are not supported - all Reference Paths
         MUST be unambiguous references to a single value, array, or object
         (subtree).</p>
       <p>For example, if state input data contained the values:</p>
@@ -402,9 +242,9 @@ h1 { margin-top: 60px; }
     }
 }</code></pre>
       <p>Then the following Reference Paths would return:</p>
-      <pre><code class="nocheck">$.foo =&gt; 123
-$.bar =&gt; ["a", "b", "c"]
-$.car.cdr =&gt; true</code></pre>
+      <pre><code class="nocheck">$.foo => 123
+$.bar => ["a", "b", "c"]
+$.car.cdr => true</code></pre>
       <p>Paths and Reference Paths are used by certain states, as specified
         later in this document, to control the flow of a state machine or to
         configure a state's settings or 
@@ -416,48 +256,47 @@ $.\stor\e.boo\k
 $.store.book.title
 $.foo.\.bar
 $.foo\@bar.baz\[\[.\?pretty
-$.&amp;&#x416;&#x4E2D;.\uD800\uDF46
+$.&amp;Ж中.\uD800\uDF46
 $.ledgers.branch[0].pending.count
 $.ledgers.branch[0]
 $.ledgers[0][22][315].foo
 $['store']['book']
 $['store'][0]['book']</code></pre>
-      <h3 id="filters">Input and Output Processing</h3>
+      <h3 id='filters'>Input and Output Processing</h3>
       <p>As described above, data is passed between states as JSON texts.
         However, a state may want to process only a subset of its input data,
         and may want that data structured differently from the way it appears
         in the input.  Similarly, it may want to control the format and
         content of the data that it passes on as output.</p>
-      <p>Fields named &#x201C;InputPath&#x201D;, &#x201C;Parameters&#x201D;, &#x201C;OutputPath&#x201D;, and
-        &#x201C;ResultPath&#x201D; exist to support this.  Any state except for a Fail State
-        MAY have &#x201C;InputPath&#x201D; and &#x201C;OutputPath&#x201D;.  States which potentially
-        generate results MAY have &#x201C;ResultPath&#x201D; and &#x201C;Parameters&#x201D;: Pass State, Task State,
-        and Parallel State.</p>
-      <p>In this discussion, &#x201C;raw input&#x201D; means the JSON text that is the input
-        to a state.  &#x201C;Result&#x201D; means the JSON text that a state generates,
+      <p>Fields named “InputPath”, “Parameters”, “OutputPath”, and
+        “ResultPath” exist to support this.  Any state except for the Fail and
+        Succeed states MAY have “InputPath” and “OutputPath”.  States which
+        potentially generate results MAY have “ResultPath” and “Parameters”:
+        Pass State, Task State, Parallel State, and Map State.</p>
+      <p>In this discussion, “raw input” means the JSON text that is the input
+        to a state.  “Result” means the JSON text that a state generates,
         for example from external code invoked by a Task State, the
         combined result of the branches in a Parallel State, or the value of
-        the &#x201C;Result&#x201D; field in a Pass state.
-        &#x201C;Effective input&#x201D; means the input after the
-        application of InputPath and Parameters, and &#x201C;effective output&#x201D; means the
-        final state output after processing the result with ResultPath and
-        OutputPath.</p> 
+        the “Result” field in a Pass state. “Effective input” means the input
+        after the application of InputPath and Parameters, and “effective
+        output” means the final state output after processing the Result with
+        ResultPath and OutputPath.</p>
       <h4>InputPath, Parameters, OutputPath, DefaultPath</h4>
       <ol>
-        <li><p>The value of &#x201C;InputPath&#x201D; MUST be a Path, which is applied to a
-            State&#x2019;s raw input to select some or all of it; that selection is
+        <li><p>The value of “InputPath” MUST be a Path, which is applied to a
+            State’s raw input to select some or all of it; that selection is
             used by the state, for example in passing to Resources
             in Task States and Choices selectors in Choice States.</p></li>
-        <li><p>&#x201C;Parameters&#x201D; may have any value.  Certain conventions described
+        <li><p>“Parameters” may have any value.  Certain conventions described
             below allow values to be extracted from the effective input and
-            embedded in the Parameters structure.  If the &#x201C;Parameters&#x201D; field is
+            embedded in the Parameters structure.  If the “Parameters” field is
             provided, its value, after the extraction and embedding, 
             becomes the effective input.</p></li>
-        <li><p>The value of &#x201C;ResultPath&#x201D; MUST be a Reference Path, which
-            specifies the raw input&#x2019;s combination with or replacement by the
-            state&#x2019;s result.</p></li>
-        <li><p>The value of &#x201C;OutputPath&#x201D; MUST be a Path, which is applied
-            to the state&#x2019;s output after the application of ResultPath,
+        <li><p>The value of “ResultPath” MUST be a Reference Path, which
+            specifies the raw input’s combination with or replacement by the
+            state’s Result.</p></li>
+        <li><p>The value of “OutputPath” MUST be a Path, which is applied
+            to the state’s output after the application of ResultPath,
             producing the effective output which serves as the raw input for the
             next state.</p></li> 
       </ol>
@@ -473,36 +312,62 @@ $['store'][0]['book']</code></pre>
       <p>The same rule applies to OutputPath processing; if the OutputPath
         result contains multiple values, the effective output is a JSON array
         containing all of them.</p>
-      <p>The ResultPath field&#x2019;s value is a Reference Path that specifies where
-        to place the result, relative to the raw input.
-        If the input has a field which matches the ResultPath value, then in
-        the output, that field is discarded and overwritten by the state
-        output. Otherwise, a new field is created in the state output.</p>
+      <p>The “ResultPath” field’s value is a Reference Path that specifies where
+        to place the Result, relative to the raw input.
+        If the raw input has a field at the location addressed by the ResultPath
+        value then in the output that field is discarded and overwritten by
+        the state's result. Otherwise, a new field is created in the state
+        output, with intervening fields constructed as necessary. For example,
+        given the raw input:</p>
+        <pre><code class="json">{
+  "master": {
+    "detail": [1, 2, 3]
+  }
+}</code></pre>
+      <p>If the state's result is the number <code>6</code>, and the
+        “ResultPath” is <code>$.master.detail</code>, then in the output the
+        <code>detail</code> field would be overwritten:</p>
+      <pre><code class="json">{
+  "master": {
+    "detail": 6
+  }
+}</code></pre>
+      <p>If instead a “ResultPath” of <code>$.master.result.sum</code> was used
+         then the result would be combined with the raw input, producing a chain
+         of new fields containing <code>result</code> and <code>sum</code>:</p>
+      <pre><code class="json">{
+  "master": {
+    "detail": [1, 2, 3],
+    "result": {
+      "sum": 6
+    }
+  }
+}</code></pre>
       <p>If the value of InputPath is <code>null</code>, that means that
         the raw input is discarded, and the effective input for the state
         is an empty JSON object, <code>{}</code>.  Note that having a value
-        of <code>null</code> is different from the InputPath field being
+        of <code>null</code> is different from the “InputPath” field being
         absent.</p>
-      <p>If the value of of ResultPath is <code>null</code>, that means that
-        the state&#x2019;s own raw output is discarded and its raw input
-        becomes its result.</p>
+      <p>If the value of ResultPath is <code>null</code>, that means that
+        the state’s Result is discarded and its raw input
+        becomes its Result.</p>
       <p>If the value of OutputPath is <code>null</code>, that means the input
-        and result are discarded, and the effective output from the state is
+        and Result are discarded, and the effective output from the state is
         an empty JSON object, <code>{}</code>.</p>
-      <h4 id="filter-defaults">Defaults</h4>
+      <h4 id='filter-defaults'>Defaults</h4>
       <p>Each of InputPath, Parameters, ResultPath, and OutputPath are optional.
-        The default value of InputPath is &#x201C;$&#x201D;, so by 
+        The default value of InputPath is “$”, so by 
         default the effective input is just the raw input.
-        The default value of ResultPath is &#x201C;$&#x201D;, so by default a state&#x2019;s
-        result overwrites and replaces the input.
-        The default value of OutputPath is &#x201C;$&#x201D;, so by default a state&#x2019;s
+        The default value of ResultPath is “$”, so by default a state’s
+        Result overwrites and replaces the input.
+        The default value of OutputPath is “$”, so by default a state’s
         effective output is the result of processing ResultPath.</p>
       <p>Parameters has no default value. If it is absent, it has no effect on
         the effective input.</p>
       <p>Therefore, if none of InputPath, Parameters, ResultPath, or
         OutputPath are  supplied, a state consumes the raw input as provided
-        and passes its result to the next state.</p>
-      <h4 id="filter-example">Input/Output Processing Examples</h4>
+        and passes its Result to the next state.</p>
+      <h4 id='filter-example'>Input/Output Processing Examples</h4>
       <p>Consider the example given above, of a Lambda task that sums a pair of
         numbers. As presented, its input is:
         <code class="json">{ "val1": 3, "val2": 4 }</code>
@@ -517,7 +382,7 @@ $['store'][0]['book']</code></pre>
       <pre><code class="nocheck">"InputPath": "$.numbers",
 "ResultPath": "$.sum"</code></pre>
       <p>And finally,suppose we simplify Line 4 of the Lambda function to read
-        as follows: <code class="nocheck">return&#xA0;JSON.stringify(total)</code>.
+        as follows: <code class="nocheck">return JSON.stringify(total)</code>.
         This is probably a better form of the function, which should really
         only care about doing math and not care how its result is labeled.</p>
       <p>In this case, the output would be:</p>
@@ -530,8 +395,8 @@ $['store'][0]['book']</code></pre>
         to achieve the desired effect. Suppose the input to some Task state
         is:</p> 
         <pre><code class="json">{ "a": 1 }</code></pre>
-        <p>Suppose the output from the Task is &#x201C;Hi!&#x201D;, and the value of the
-          &#x201C;ResultPath&#x201D; field is &#x201C;$.b.greeting&#x201D;.  Then the output from
+        <p>Suppose the output from the Task is “Hi!”, and the value of the
+          “ResultPath” field is “$.b.greeting”.  Then the output from
           the state would be:</p>
         <pre><code class="json">{
   "a": 1,
@@ -540,19 +405,19 @@ $['store'][0]['book']</code></pre>
   }
 }</code></pre>
 
-      <h4 id="context-object">The Context Object</h4>
+      <h4 id='context-object'>The Context Object</h4>
       <p>The Interpreter can provide information to an executing state machine
-	about the execution and other implementation details. This is delivered
-	in the form of a JSON object called the &#x201C;Context Object&#x201D;.  This version
-	of the States Language specification does not specify any contents of
-	the Context Object.</p>
+        about the execution and other implementation details. This is delivered
+        in the form of a JSON object called the “Context Object”.  This version
+        of the States Language specification does not specify any contents of
+        the Context Object.</p>
 
-      <h4 id="parameters">Parameters</h4>
-      <p>The value of the &#x201C;Parameters&#x201D; field (after processing described below)
+      <h4 id='parameters'>Parameters</h4>
+      <p>The value of the “Parameters” field (after processing described below)
       becomes the effective input.  Consider the following Task state:</p>
       <pre><code class="state">"X": {
   "Type": "Task",
-  "Resource": "arn:aws:swf:us-east-1:123456789012:task:X",
+  "Resource": "arn:aws:states:us-east-1:123456789012:task:X",
   "Next": "Y",
   "Parameters": {
     "first": 88,
@@ -560,31 +425,31 @@ $['store'][0]['book']</code></pre>
   }
 }</code></pre>
       <p>In this case, the effective input to the code identified in the
-	Resource field would be the object with &#x201C;first&#x201D; and &#x201C;second&#x201D; fields
-	which is the value of the &#x201C;Parameters&#x201D; field.</p>
+        Resource field would be the object with “first” and “second” fields
+        which is the value of the “Parameters” field.</p>
       <p>Values from the effective input and the Context Object can be
-	inserted into the &#x201C;Parameters&#x201D; field with a combination of a
-	field-naming convention and JsonPath.</p>
+        inserted into the “Parameters” field with a combination of a
+        field-naming convention and JsonPath.</p>
       <p>If any JSON object within the
-	value of Parameters (however deeply nested) has a field whose name ends
-	with the characters &#x201C;.$&#x201D;, its value MUST begin with a "$".</p>
-      <p>If the value begins with &#x201C;$$&#x201D;, the first dollar sign is stripped and
-	the remainder MUST be a PATH. In this case, the Path is applied to the
-	Context Object and the result is called the Extracted Value.</p>
-      <p>If the value begins with only one &#x201C;$&#x201D;, the value MUST be a path.
-	In this case, the Path is applied to the effective input and the
-	result is called the Extracted Value.</p>
+        value of Parameters (however deeply nested) has a field whose name ends
+        with the characters “.$”, its value MUST begin with a "$".</p>
+      <p>If the value begins with “$$”, the first dollar sign is stripped and
+        the remainder MUST be a PATH. In this case, the Path is applied to the
+        Context Object and the result is called the Extracted Value.</p>
+      <p>If the value begins with only one “$”, the value MUST be a path.
+        In this case, the Path is applied to the effective input and the
+        result is called the Extracted Value.</p>
       <p>If the path is legal but cannot be applied successfully
-	the Interpreter fails the machine execution with an Error Name
-	of &#x201C;States.ParameterPathFailure&#x201D;.</p>
-      <p>When a field name ends with &#x201C;.$&#x201D; and its value can be used to
-	generate an Extracted Value as described above, the field is replaced
-	within the Parameters value by another field whose name is the original
-	name minus the &#x201C;.$&#x201D; suffix, and whose value is the Extracted Value. </p>
+        the Interpreter fails the machine execution with an Error Name
+        of “States.ParameterPathFailure”.</p>
+      <p>When a field name ends with “.$” and its value can be used to
+        generate an Extracted Value as described above, the field is replaced
+        within the Parameters value by another field whose name is the original
+        name minus the “.$” suffix, and whose value is the Extracted Value. </p>
       <p>Consider this example:</p>
       <pre><code class="state">"X": {
   "Type": "Task",
-  "Resource": "arn:aws:swf:us-east-1:123456789012:task:X",
+  "Resource": "arn:aws:states:us-east-1:123456789012:task:X",
   "Next": "Y",
   "Parameters": {
     "flagged": true,
@@ -605,7 +470,7 @@ $['store'][0]['book']</code></pre>
   "DayOfWeek": "TUESDAY"
 }</code></pre>
       <p>In this case, the effective input to the code identified in
-        the Resource field would be as follows:</p>
+        the “Resource” field would be as follows:</p>
       <pre><code class="json">{
   "flagged": true,
   "parts": {
@@ -615,53 +480,51 @@ $['store'][0]['book']</code></pre>
   "weekday": "TUESDAY"
 }</code></pre>
         <h4>Runtime Errors</h4>
-      <p>Suppose a state&#x2019;s input
-        is the string <code>"foo"</code>, and its &#x201C;ResultPath&#x201D; field has the
-        value &#x201C;$.x&#x201D;. Then ResultPath cannot apply and the Interpreter
-        fails the machine with Error Name of
-        &#x201C;States.ResultPathMatchFailure&#x201D;.</p>
-      <h3 id="errors">Errors</h3>
+      <p>Suppose a state’s input
+        is the string <code>"foo"</code>, and its “ResultPath” field has the
+        value “$.x”. Then ResultPath cannot apply and the Interpreter fails
+        the machine with an Error Name of “States.ResultPathMatchFailure”.</p>
+      <h3 id='errors'>Errors</h3>
       <p>Any state can encounter runtime errors. Errors can arise because of
-        state machine definition issues (e.g. the &#x201C;ResultPath&#x201D; problem
+        state machine definition issues (e.g. the “ResultPath” problem
         discussed immediately above),
         task failures (e.g. an exception thrown by a Lambda function) or
         because of transient issues, such as network partition events. </p>
       <p>When a state reports an error, the default course of action for the
         interpreter is to fail the whole state machine.</p>
 
-      <h4 id="error-names">Error representation</h4>
+      <h4 id='error-names'>Error representation</h4>
       <p>Errors are identified by case-sensitive strings, called Error
         Names.  The States language
         defines a set of built-in strings naming well-known errors, all of
-        which begin with the prefix &#x201C;States.&#x201D;; see
+        which begin with the prefix “States.”; see
         <a href="#appendix-a">Appendix A</a>.</p>
       <p>States MAY report errors with other names, 
-        which MUST NOT begin with the prefix &#x201C;States.&#x201D;.</p>
-      <h4 id="retrying-after-error">Retrying after error</h4>
-        <p>Task States and Parallel States MAY
-          have a field 
-          named &#x201C;Retry&#x201D;, whose value MUST be an array of objects, called
-          Retriers.</p>
-      <p>Each Retrier MUST contain a field named &#x201C;ErrorEquals&#x201D; whose value
+        which MUST NOT begin with the prefix “States.”.</p>
+      <h4 id='retrying-after-error'>Retrying after error</h4>
+        <p>Task States, Parallel States, and Map States MAY
+          have a field named “Retry”, whose value MUST be an array of objects,
+          called Retriers.</p>
+      <p>Each Retrier MUST contain a field named “ErrorEquals” whose value
         MUST be a non-empty array of Strings, which match
-        <a href="#error-names">Error Names</a>.</p>
+        <a href='#error-names'>Error Names</a>.</p>
       <p>When a state reports an error, the interpreter scans through the
-        Retriers and, when the Error Name appears in the value of of
-        a Retrier&#x2019;s &#x201C;ErrorEquals&#x201D; field, implements the retry policy described
+        Retriers and, when the Error Name appears in the value of 
+        a Retrier’s “ErrorEquals” field, implements the retry policy described
         in that Retrier.</p>
       <p>An individual Retrier represents a certain number of retries,
         usually at increasing time intervals.</p>
-      <p>A Retrier MAY contain a field named &#x201C;IntervalSeconds&#x201D;, whose value
+      <p>A Retrier MAY contain a field named “IntervalSeconds”, whose value
         MUST be a positive integer, representing the number of seconds before the first
-        retry attempt (default value: 1); a field named &#x201C;MaxAttempts&#x201D; whose
+        retry attempt (default value: 1); a field named “MaxAttempts” whose
         value MUST be a non-negative integer, representing the maximum number of
         retry attempts (default: 3); 
-        and a field named &#x201C;BackoffRate&#x201D;, a number which is the multiplier
+        and a field named “BackoffRate”, a number which is the multiplier
         that increases the retry interval on each attempt (default: 2.0).
         The value of BackoffRate MUST be greater than or equal to 1.0.</p>
-        <p>Note that a &#x201C;MaxAttempts&#x201D; field whose value is 0 is legal, specifying
+        <p>Note that a “MaxAttempts” field whose value is 0 is legal, specifying
         that some error or errors should never be retried. </p>
-      <p>Here is an example of a Retry field which will make 2 retry attempts
+      <p>Here is an example of a Retrier which will make 2 retry attempts
         after waits of 3 and 4.5 seconds:</p>
       <pre><code class="member">"Retry" : [
     {
@@ -671,12 +534,12 @@ $['store'][0]['book']</code></pre>
       "BackoffRate": 1.5
     }
 ]</code></pre>      
-      <p>The reserved name &#x201C;States.ALL&#x201D; in a Retrier&#x2019;s &#x201C;ErrorEquals&#x201D; field is a
+      <p>The reserved name “States.ALL” in a Retrier’s “ErrorEquals” field is a
         wild-card and matches any Error Name.  Such a value MUST appear
-        alone in the &#x201C;ErrorEquals&#x201D; array and MUST appear in the last Retrier in
-        the &#x201C;Retry&#x201D; array.</p>
-      <p>Here is an example of a Retry field which will retry any error except
-        for &#x201C;States.Timeout&#x201D;, using the default retry parameters.</p>
+        alone in the “ErrorEquals” array and MUST appear in the last Retrier in
+        the “Retry” array.</p>
+      <p>Here is an example of a Retrier which will retry any error except
+        for “States.Timeout”, using the default retry parameters.</p>
       <pre><code class="member">"Retry" : [
     {
       "ErrorEquals": [ "States.Timeout" ],
@@ -686,16 +549,16 @@ $['store'][0]['book']</code></pre>
       "ErrorEquals": [ "States.ALL" ]
     }
 ]</code></pre>      
-      <p>If the error recurs more times than allowed for by the &#x201C;MaxAttempts&#x201D;
+      <p>If the error recurs more times than allowed for by the “MaxAttempts”
         field, retries cease and normal error handling resumes.</p>
         
-      <h4 id="complex-retries">Complex retry scenarios</h4>
-      <p>A Retrier&#x2019;s parameters apply across all visits to that
+      <h4 id='complex-retries'>Complex retry scenarios</h4>
+      <p>A Retrier’s parameters apply across all visits to that
       Retrier in the context of a single state execution.  This is best
         illustrated by example; consider the following Task State:</p>
       <pre><code class="state">"X": {
   "Type": "Task",
-  "Resource": "arn:aws:swf:us-east-1:123456789012:task:X",
+  "Resource": "arn:aws:states:us-east-1:123456789012:task:X",
   "Next": "Y",
   "Retry": [
     {
@@ -717,57 +580,54 @@ $['store'][0]['book']</code></pre>
   ]
 }</code></pre>
       <p>Suppose that this task fails four successive times, throwing Error
-        Names &#x201C;ErrorA&#x201D;, &#x201C;ErrorB&#x201D;, &#x201C;ErrorC&#x201D;, and &#x201C;ErrorB&#x201D;.
+        Names “ErrorA”, “ErrorB”, “ErrorC”, and “ErrorB”.
         The first two errors match the first retrier and cause waits of one
         and two seconds.  The third error matches the second retrier and
         causes a wait of five seconds.  The fourth error would match the
-        first retrier but its &#x201C;MaxAttempts&#x201D; ceiling of two retries has already been
-        reached, so that Retrier fails, and execution is redirected to the &#x201C;Z&#x201D;
-        state via the &#x201C;Catch&#x201D; field.</p>
+        first retrier but its “MaxAttempts” ceiling of two retries has already been
+        reached, so that Retrier fails, and execution is redirected to the “Z”
+        state via the “Catch” field.</p>
       <p>Note that once the interpreter transitions to another state in any
         way, all the Retrier parameters reset.</p>
-      <h4 id="fallback-states">Fallback states</h4>
-      <p>Task States and Parallel States MAY
-        have a field 
-        named &#x201C;Catch&#x201D;, whose value MUST be an array of objects, called
-        Catchers.</p>
-
-      <p>Each Catcher MUST contain a field named &#x201C;ErrorEquals&#x201D;, specified exactly
-        as with the Retrier &#x201C;ErrorEquals&#x201D; field, and a field named &#x201C;Next&#x201D;
+      <h4 id='fallback-states'>Fallback states</h4>
+      <p>Task States, Parallel States, and Map States MAY have a field named
+        “Catch”, whose value MUST be an array of objects, called Catchers.</p>
+      <p>Each Catcher MUST contain a field named “ErrorEquals”, specified exactly
+        as with the Retrier “ErrorEquals” field, and a field named “Next”
         whose value MUST be a string exactly matching a
         State Name.</p>
-      <p>When a state reports an error and either there is no Retry field, or
+      <p>When a state reports an error and either there is no Retrier, or
         retries have failed to resolve the error, the interpreter scans
         through the Catchers in array order, and when the
         <a href="#error-names">Error Name</a> appears
-        in the value of a Catcher&#x2019;s &#x201C;ErrorEquals&#x201D; field, transitions the 
-        machine to the state named in the value of the &#x201C;Next&#x201D; field.</p> 
-      <p>The reserved name &#x201C;States.ALL&#x201D; appearing in a Retrier&#x2019;s &#x201C;ErrorEquals&#x201D; field is a
-        wild-card and matches any Error Name.  Such a value MUST appear
-        alone in the &#x201C;ErrorEquals&#x201D; array and MUST appear in the last Catcher in
-        the &#x201C;Catch&#x201D; array.</p>
-      <h4 id="error-output">Error output</h4>
+        in the value of a Catcher’s “ErrorEquals” field, transitions the 
+        machine to the state named in the value of the “Next” field.</p> 
+      <p>The reserved name “States.ALL” appearing in a Retrier’s “ErrorEquals”
+        field is a wild-card and matches any Error Name.  Such a value MUST
+        appear alone in the “ErrorEquals” array and MUST appear in the last
+        Catcher in the “Catch” array.</p>
+      <h4 id='error-output'>Error output</h4>
       <p>When a state reports an error and it matches a Catcher, causing a
-      transfer to another state, the state&#x2019;s result (and thus the input to the
-      state identified in the Catcher&#x2019;s &#x201C;Next&#x201D; field) is a JSON object, called
+      transfer to another state, the state’s Result (and thus the input to the
+      state identified in the Catcher’s “Next” field) is a JSON object, called
       the Error Output.  The Error Output MUST have a string-valued field
-      named &#x201C;Error&#x201D;, containing the Error Name.  It SHOULD have a string-valued
-        field named &#x201C;Cause&#x201D;, containing human-readable text about
+      named “Error”, containing the Error Name.  It SHOULD have a string-valued
+        field named “Cause”, containing human-readable text about
         the error.</p>
-      <p>A Catcher MAY have an &#x201C;ResultPath&#x201D; field, which works exactly like 
-        <a href="#filters">a state&#x2019;s top-level &#x201C;ResultPath&#x201D;</a>, and may be
-        used to inject the Error Output into the state&#x2019;s original
-        input to create the input for the Catcher&#x2019;s &#x201C;Next&#x201D; state.  The default
-        value, if the &#x201C;ResultPath&#x201D; field is not provided, is &#x201C;$&#x201D;, meaning that
+      <p>A Catcher MAY have an “ResultPath” field, which works exactly like 
+        <a href="#filters">a state’s top-level “ResultPath”</a>, and may be
+        used to inject the Error Output into the state’s original
+        input to create the input for the Catcher’s “Next” state.  The default
+        value, if the “ResultPath” field is not provided, is “$”, meaning that
         the output consists entirely of the Error Output. </p>
-      <p>Here is an example of a Catch field that will transition to the state
-        named &#x201C;RecoveryState&#x201D; when a Lambda function throws an unhandled Java
-        Exception, and otherwise to the &#x201C;EndMachine&#x201D; state, which is
+      <p>Here is an example of a Catcher that will transition to the state
+        named “RecoveryState” when a Lambda function throws an unhandled Java
+        Exception, and otherwise to the “EndMachine” state, which is
         presumably Terminal.</p>
       <p>Also in this example, if the first Catcher matches the Error Name,
-        the input to &#x201C;RecoveryState&#x201D; will be the original 
+        the input to “RecoveryState” will be the original 
         state input, with the Error Output as the value of the top-level
-        &#x201C;error-info&#x201D; field.  For any other error, the input to &#x201C;EndMachine&#x201D;
+        “error-info” field.  For any other error, the input to “EndMachine”
         will just be the Error Output.</p>
     <pre><code class="member">"Catch": [
   {
@@ -781,26 +641,26 @@ $['store'][0]['book']</code></pre>
   }
 ]</code></pre>
       <p>Each Catcher can specifiy multiple errors to handle.</p>
-      <p>When a state has both Retry and Catch fields, the interpreter 
+      <p>When a state has both “Retry” and “Catch” fields, the interpreter 
         uses any appropriate Retriers first and only applies the
-        a matching Catcher transition if the retry policy fails to resove the
+        a matching Catcher transition if the retry policy fails to resolve the
         error.</p>
     </div>
-    <div id="states">
-    <h2 id="statetypes">State Types</h2>
-    <p>As a reminder, the state type is given by the value of the &#x201C;Type&#x201D;
+    <div id='states'>
+    <h2 id='statetypes'>State Types</h2>
+    <p>As a reminder, the state type is given by the value of the “Type”
         field, which MUST appear in every State object.</p>
-      <h3 id="state-type-table">Table of State Types and Fields</h3>
+      <h3 id='state-type-table'>Table of State Types and Fields</h3>
       <p>Many fields can appear in more than one state type. The table below
         summarizes which fields can appear in which states.  It excludes
         fields that are specific to one state type.</p>
       <table cellpadding="5">
         <tr>
-          <td class="blank"/>
+          <td class="blank"></td>
           <th align="center" colspan="8">States</th>
         </tr>
         <tr align="center">
-          <td class="blank"/>
+          <td class="blank"></td>
           <th>Pass</th>
           <th>Task</th>
           <th>Choice</th>
@@ -808,9 +668,11 @@ $['store'][0]['book']</code></pre>
           <th>Succeed</th>
           <th>Fail</th>
           <th>Parallel</th>
+          <th>Map</th>
         </tr>
         <tr align="center">
           <td align="right" class="field">Type</td>
+          <td align="center" class="required">Required</td>
           <td align="center" class="required">Required</td>
           <td align="center" class="required">Required</td>
           <td align="center" class="required">Required</td>
@@ -828,6 +690,7 @@ $['store'][0]['book']</code></pre>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
+          <td align="center" class="allowed">Allowed</td>
         </tr>
         <tr align="center">
           <td align="right" class="field">InputPath, OutputPath</td>
@@ -836,65 +699,70 @@ $['store'][0]['book']</code></pre>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
+          <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
         </tr>
         <tr align="center">
           <td align="right" class="field">Parameters</td>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
         </tr>
         <tr align="center">
           <td align="right" class="field">ResultPath</td>
           <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
         </tr>
         <tr align="center">
           <td align="right" class="field"><i>One of:</i> Next <i>or</i> "End":true</td>
           <td align="center" class="required">Required</td>
           <td align="center" class="required">Required</td>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
           <td align="center" class="required">Required</td>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="required">Required</td>
           <td align="center" class="required">Required</td>
         </tr>
         <tr align="center">
           <td align="right" class="field">Retry, Catch</td>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
           <td align="center" class="allowed">Allowed</td>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
-          <td align="center" class="empty"/>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="empty"></td>
+          <td align="center" class="allowed">Allowed</td>
           <td align="center" class="allowed">Allowed</td>
         </tr>
       </table>
-      <h3 id="pass-state">Pass State</h3>
+      <h3 id='pass-state'>Pass State</h3>
       <p>The Pass State (identified
         by <code class="nocheck">"Type":"Pass"</code>) simply passes its input
         to its output, performing no work. Pass States are useful when
         constructing and debugging state machines.</p>
-      <p>A Pass State MAY have a field named &#x201C;Result&#x201D;.  If present, its value
+      <p>A Pass State MAY have a field named “Result”.  If present, its value
         is treated as the output of a virtual task, and placed as prescribed
-        by the &#x201C;ResultPath&#x201D; field, if any, to be passed on to the next
-        state. If &#x201C;Result&#x201D; is not provided, the output is the input.  Thus if
-        neither &#x201C;Result&#x201D; nor &#x201C;ResultPath&#x201D; are provided, the Pass state copies its
+        by the “ResultPath” field, if any, to be passed on to the next
+        state. If “Result” is not provided, the output is the input.  Thus if
+        neither “Result” nor “ResultPath” are provided, the Pass state copies its
         input through to its output.</p> 
         <p>Here is an example of a Pass
         State that injects some fixed data into the state machine, probably for
         testing purposes.</p>
-      <pre><code class="state">"No-op": {
+      <pre><code class='state'>"No-op": {
   "Type": "Pass",         
   "Result": {
     "x-datum": 0.381018,
@@ -915,45 +783,45 @@ $['store'][0]['book']</code></pre>
     "y-datum": 622.2269926397355
   }
 }</code></pre>
-      <h3 id="task-state">Task State</h3>
+      <h3 id='task-state'>Task State</h3>
       <p>The Task State (identified
       by <code class="nocheck">"Type":"Task"</code>) causes the 
-      interpreter to execute the work identified by the state&#x2019;s 
-      &#x201C;Resource&#x201D; field.</p>
+      interpreter to execute the work identified by the state’s 
+      “Resource” field.</p>
       <p>Here is an example:</p>
       <pre><code class="state">"TaskState": {
   "Comment": "Task State example",
   "Type": "Task",
-  "Resource": "arn:aws:swf:us-east-1:123456789012:task:HelloWorld",
+  "Resource": "arn:aws:states:us-east-1:123456789012:task:HelloWorld",
   "Next": "NextState",
   "TimeoutSeconds": 300,
   "HeartbeatSeconds": 60
 }</code></pre>
-      <p>A Task State MUST include a &#x201C;Resource&#x201D; field, whose value MUST be
+      <p>A Task State MUST include a “Resource” field, whose value MUST be
         a URI that uniquely identifies the specific task to execute.  The
         States language does 
         not constrain the URI scheme nor any other part of the URI.</p>
       <p>Tasks can optionally specify timeouts. Timeouts (the
-        &#x201C;TimeoutSeconds&#x201D; and &#x201C;HeartbeatSeconds&#x201D; fields) are specified in
+        “TimeoutSeconds” and “HeartbeatSeconds” fields) are specified in
         seconds and MUST be positive integers. If provided, the
-        &#x201C;HeartbeatSeconds&#x201D; interval 
-        MUST be smaller than the &#x201C;TimeoutSeconds&#x201D; value.</p>
-      <p>If not provided, the default value of &#x201C;TimeoutSeconds&#x201D; is 60.</p>
+        “HeartbeatSeconds” interval 
+        MUST be smaller than the “TimeoutSeconds” value.</p>
+      <p>If not provided, the default value of “TimeoutSeconds” is 60.</p>
       <p>If the state runs longer than the specified timeout, or if more time
         than the specified heartbeat elapses between heartbeats from the task,
         then the interpreter fails the state with
         a <code class="nocheck">States.Timeout</code> Error Name.</p>
-      <h3 id="choice-state">Choice State</h3>
+      <h3 id='choice-state'>Choice State</h3>
       <p>A Choice state (identified
         by <code class="nocheck">"Type":"Choice"</code>) adds branching logic
         to a state machine. </p> 
-      <p>A Choice state state MUST have a &#x201C;Choices&#x201D; field whose value is a
+      <p>A Choice state MUST have a “Choices” field whose value is a
         non-empty array. Each element of the array is called a Choice Rule -
         an object containing a comparison operation and 
-        a &#x201C;Next&#x201D; field, whose value MUST match a state name.</p>
+        a “Next” field, whose value MUST match a state name.</p>
       <p>The interpreter attempts pattern-matches against the
         Choice Rules in array order and transitions to the state specified
-        in the &#x201C;Next&#x201D; field on the first Choice Rule where there is an exact
+        in the “Next” field on the first Choice Rule where there is an exact
         match between the input value and a member of the comparison-operator
         array.</p>
       <p>Here is an example of a Choice state, with some other states that it
@@ -1004,12 +872,12 @@ $['store'][0]['book']</code></pre>
       <p>In this example, suppose the machine is started with an input value
         of:</p>  
         <pre><code class="json">{
-  "type": "private",
+  "type": "Private",
   "value": 22
 }</code></pre>
         <p>Then the
-          interpreter will transition to the &#x201C;ValueInTwenties&#x201D; state, based
-          on the &#x201C;value&#x201D; field.</p>
+          interpreter will transition to the “ValueInTwenties” state, based
+          on the “value” field.</p>
       <p>Each choice rule MUST contain exactly one field containing a
         comparison operator. The following comparison operators are
         supported:</p> 
@@ -1034,33 +902,37 @@ $['store'][0]['book']</code></pre>
         <li><p>Or</p></li>
         <li><p>Not</p></li>
       </ol>
-      <p>For each of these operators, the field&#x2019;s value MUST be a value of the
+      <p>For each of these operators, the field’s value MUST be a value of the
         appropriate type: String, number, boolean,
-        or <a href="#timestamps">Timestamp</a>.</p>
+        or <a href='#timestamps'>Timestamp</a>.</p>
       <p>The interpreter scans through the Choice Rules in a type-sensitive
         way, and will not attempt to match a numeric field to a string value.
         However, since Timestamp fields are logically strings, it is
         possible that a field which is thought of as a time-stamp could be
-        matched by a &#x201C;StringEquals&#x201D; comparator.</p>
+        matched by a “StringEquals” comparator.</p>
+      <p>The various String comparators compare strings character-by-character
+        with no special treatments such as case-folding, white-space collapsing,
+        or <a href="https://unicode.org/reports/tr15/">Unicode form
+        normalization</a>. Put simply, they are case-sensitive.</p>
       <p>Note that for interoperability, numeric comparisons should not
         be assumed to work with values outside the magnitude or precision
-        representable using the IEEE 754-2008 &#x201C;binary64&#x201D; data type.  In
+        representable using the IEEE 754-2008 “binary64” data type.  In
         particular, integers outside of the range
         [-(2<sup>53</sup>)+1, (2<sup>53</sup>)-1] might fail to compare
         in the expected way.</p>
-      <p>The values of the &#x201C;And&#x201D; and &#x201C;Or&#x201D;&#xA0;operators MUST be non-empty arrays
-        of Choice Rules that MUST NOT contain &#x201C;Next&#x201D; fields; the
-        &#x201C;Next&#x201D; field can only appear in a top-level Choice Rule.</p>
-      <p>The value of a &#x201C;Not&#x201D; operator MUST be a single Choice Rule, that
-        MUST NOT contain &#x201C;Next&#x201D; fields; the &#x201C;Next&#x201D; field can only
+      <p>The values of the “And” and “Or” operators MUST be non-empty arrays
+        of Choice Rules that MUST NOT contain “Next” fields; the
+        “Next” field can only appear in a top-level Choice Rule.</p>
+      <p>The value of a “Not” operator MUST be a single Choice Rule, that
+        MUST NOT contain “Next” fields; the “Next” field can only
         appear in a top-level Choice Rule.</p>
-      <p>Choice states MAY have a &#x201C;Default&#x201D; field, which
+      <p>Choice states MAY have a “Default” field, which
         will execute if none of the Choice Rules match. The
         interpreter will raise a run-time States.NoChoiceMatched error if a
-        &#x201C;Choice&#x201D; state fails to match a Choice Rule and no &#x201C;Default&#x201D;
+        “Choice” state fails to match a Choice Rule and no “Default”
         transition was specified. </p>
       <p>Choice states MUST NOT be End states.</p>
-      <h3 id="wait-state">Wait State</h3>
+      <h3 id='wait-state'>Wait State</h3>
       <p>A Wait state (identified
         by <code class="nocheck">"Type":"Wait"</code>) causes
         the interpreter to delay the
@@ -1090,21 +962,24 @@ $['store'][0]['book']</code></pre>
     "TimestampPath": "$.expirydate",
     "Next": "NextState"
 }</code></pre>
-      <p>A Wait state MUST contain exactly one of &#x201D;Seconds&#x201D;, &#x201C;SecondsPath&#x201D;,
-        &#x201C;Timestamp&#x201D;, or &#x201C;TimestampPath&#x201D;.</p>
-      <h3 id="succeed-state">Succeed State</h3>
+      <p>A Wait state MUST contain exactly one of ”Seconds”, “SecondsPath”,
+        “Timestamp”, or “TimestampPath”.</p>
+      <h3 id='succeed-state'>Succeed State</h3>
       <p>The Succeed State (identified
         by <code class="nocheck">"Type":"Succeed"</code>) 
-        terminates a state machine successfully. The Succeed State is a useful
-        target for Choice-state branches that don't do anything but terminate
-        the machine. </p>
+        either terminates a state machine successfully, ends a branch of a
+        Parallel state, or ends an iteration of a Map state. The output of a
+        Succeed state is the same as its input, possibly modified by “InputPath”
+        and/or “OutputPath”.</p>
+        <p>The Succeed State is a useful target for Choice-state branches that
+        don't do anything except terminate the machine.</p>
       <p>Here is an example:</p>
       <pre><code class="state">"SuccessState": {
   "Type": "Succeed"
 }</code></pre>
-      <p>Because Succeed States are terminal states, they have no &#x201C;Next&#x201D;
+      <p>Because Succeed States are terminal states, they have no “Next”
         field.</p>
-      <h3 id="fail-state">Fail State</h3>
+      <h3 id='fail-state'>Fail State</h3>
       <p>The Fail State (identified
         by <code class="nocheck">"Type":"Fail"</code>) terminates 
         the machine and marks it as a failure. </p>
@@ -1114,14 +989,14 @@ $['store'][0]['book']</code></pre>
           "Error": "ErrorA",
           "Cause": "Kaiju attack"
 }</code></pre>
-    <p>A Fail State MUST have a string field named &#x201C;Error&#x201D;, used to provide an
+    <p>A Fail State MUST have a string field named “Error”, used to provide an
         error name that can be used for error handling (Retry/Catch),
         operational, or diagnostic purposes. A Fail State MUST have a string
-        field named &#x201C;Cause&#x201D;, used to provide a human-readable 
+        field named “Cause”, used to provide a human-readable 
         message.</p>
-      <p>Because Fail States are terminal states, they have no &#x201C;Next&#x201D;
+      <p>Because Fail States are terminal states, they have no “Next”
         field.</p>
-      <h3 id="parallel-state">Parallel State</h3>
+      <h3 id='parallel-state'>Parallel State</h3>
       <p>The Parallel State (identified
         by <code class="nocheck">"Type":"Parallel"</code>) causes 
         parallel execution of "branches".</p>
@@ -1155,26 +1030,26 @@ $['store'][0]['book']</code></pre>
   "Next": "NextState"
 }</code></pre>
       <p>A Parallel state causes the interpreter to execute each branch
-        starting with the state named in its &#x201C;StartAt&#x201D; field,
+        starting with the state named in its “StartAt” field,
         as concurrently as possible,
         and wait until each branch terminates
         (reaches a terminal state) before processing the Parallel state's
-        &#x201C;Next&#x201D; field. In the above example, this means the interpreter waits
-        for &#x201C;LookupAddress&#x201D; and &#x201C;LookupPhoneNumber&#x201D; to both finish before
-        transitioning to &#x201C;NextState&#x201D;. </p>
+        “Next” field. In the above example, this means the interpreter waits
+        for “LookupAddress” and “LookupPhoneNumber” to both finish before
+        transitioning to “NextState”. </p>
       <p>In the example above, the LookupAddress and LookupPhoneNumber
         branches are executed in parallel. </p>
-      <p>A Parallel State MUST contain a field named &#x201C;Branches&#x201D; which is an
+      <p>A Parallel State MUST contain a field named “Branches” which is an
         array whose elements MUST be objects.  Each object MUST contain fields
-        named &#x201C;States&#x201D; and &#x201C;StartAt&#x201D; whose meanings are exactly like those
+        named “States” and “StartAt” whose meanings are exactly like those
         in the top level of a State Machine.</p>
-      <p>A state in a Parallel state branch &#x201C;States&#x201D; field MUST NOT have a
-        &#x201C;Next&#x201D; field that targets a field outside of that &#x201C;States&#x201D; field.
-        A state MUST NOT have a &#x201C;Next&#x201D; field which matches a state
-        name inside a Parallel state branch&#x2019;s &#x201C;States&#x201D; field unless it is also
-        inside the same &#x201C;States&#x201D; field.</p>
-      <p>Put another way, states in a branch&#x2019;s &#x201C;States&#x201D; field can transition
-        only to each other, and no state outside of that &#x201C;States&#x201D; field can
+      <p>A state in a Parallel state branch “States” field MUST NOT have a
+        “Next” field that targets a field outside of that “States” field.
+        A state MUST NOT have a “Next” field which matches a state
+        name inside a Parallel state branch’s “States” field unless it is also
+        inside the same “States” field.</p>
+      <p>Put another way, states in a branch’s “States” field can transition
+        only to each other, and no state outside of that “States” field can
         transition into it.</p>
       <p>If any branch fails, due to an unhandled error or by
         transitioning to a Fail state, the entire Parallel state is
@@ -1182,13 +1057,18 @@ $['store'][0]['book']</code></pre>
         are terminated. If the error is not handled by the Parallel
         State, the interpreter should terminate the machine execution with an
         error.</p>
+      <p>Unlike a Fail state, a Succeed state within a Parallel merely terminates
+        its own branch. A Succeed state passes its input through as its output,
+        possibly modified by “InputPath” and “OutputPath”.</p>
       <p>The Parallel state passes its input (potentially as filtered by the
-        &#x201C;InputPath&#x201D; field) as the input to each branch&#x2019;s &#x201C;StartAt&#x201D;
-        state.  it generates output which is an array with one element for each
-        branch containing the output from that branch.  There is no
-        requirement that all elements be of the same type.</p>
+        “InputPath” field) as the input to each branch’s “StartAt”
+        state. It generates a result which is an array with one element for each
+        branch containing the output from that branch. The elements of the
+        output array correspond to the branches in the same order that they
+        appear in the “Branches” array. There is no requirement that all
+        elements be of the same type.</p>
       <p>The output array can be inserted into the input data using the
-        state&#x2019;s &#x201C;ResultPath&#x201D; field in the usual way.</p>
+        state’s “ResultPath” field in the usual way.</p>
       <p>For example, consider the following Parallel State:</p>
       <pre><code class="state">"FunWithMath": {
   "Type": "Parallel",
@@ -1198,7 +1078,7 @@ $['store'][0]['book']</code></pre>
       "States": {
         "Add": {
           "Type": "Task",
-          "Resource": "arn:aws:swf:::task:Add",
+          "Resource": "arn:aws:states:::task:Add",
           "End": true
         }
       }
@@ -1208,7 +1088,7 @@ $['store'][0]['book']</code></pre>
       "States": {
         "Subtract": {
           "Type": "Task",
-          "Resource": "arn:aws:swf:::task:Subtract",
+          "Resource": "arn:aws:states:::task:Subtract",
           "End": true
         }
       }
@@ -1216,44 +1096,197 @@ $['store'][0]['book']</code></pre>
   ],
   "Next": "NextState"
 }</code></pre>
-      <p>If the &#x201C;FunWithMath&#x201D; state was given the JSON
+      <p>If the “FunWithMath” state was given the JSON
         array <code class="nocheck">[3, 2]</code> 
-        as input, then both the &#x201C;Add&#x201D; and &#x201C;Subtract&#x201D; states would receive that
-        array as input.  The output of &#x201C;Add&#x201D; would
+        as input, then both the “Add” and “Subtract” states would receive that
+        array as input.  The output of “Add” would
         be <code class="nocheck">5</code>, that of
-        &#x201C;Subtract&#x201D; would be <code class="nocheck">1</code>, and the output of the
+        “Subtract” would be <code class="nocheck">1</code>, and the output of the
         Parallel State would be a JSON array:</p>
 <pre><code>[ 5, 1 ]</code></pre>
-      <p>If any branch fails, due to an unhandled error or by
-        transitioning to a Fail state, the entire Parallel state is
-        considered to have failed and all the branches
-        are terminated. If the error is not handled by the Parallel
-        State, the interpreter should terminate the machine execution with an
-        error.</p>
+    <h3 id='map-state'>Map State</h3>
+    <p>The Map State (identified by <code class="nocheck">"Type": "Map"</code>)
+      causes the interpreter to process all the elements of an array,
+      potentially in parallel, with the processing of each element
+      independent of the others.
+      This document uses the term “iteration” to describe each such
+      nested execution.</p>
+    <p>The Parallel state applies multiple different 
+      state-machine branches to the same input, while the Map state applies a
+      single state machine to multiple input elements.</p>
+    <p>There are several fields which may be used to control the execution. To
+      summarize:</p>
+    <ol><li><p>The “Iterator” field’s value is an object that defines a state
+          machine which will process each element of the array.</p></li>
+      <li><p>The “ItemsPath” field’s value is a reference path identifying where in the
+          effective input the array field is found.</p></li>
+      <li><p>The “MaxConcurrency” field’s value is an integer that provides an upper
+          bound on how many invocations of the Iterator may run in parallel.</p></li>
+    </ol>
+    <p>Consider the following example input data:</p>
+    <pre><code class="json">{
+  "ship-date": "2016-03-14T01:59:00Z",
+  "detail": {
+    "delivery-partner": "UQS",
+    "shipped": [
+      { "prod": "R31", "dest-code": 9511, "quantity": 1344 },
+      { "prod": "S39", "dest-code": 9511, "quantity": 40 },
+      { "prod": "R31", "dest-code": 9833, "quantity": 12 },
+      { "prod": "R40", "dest-code": 9860, "quantity": 887 },
+      { "prod": "R40", "dest-code": 9511, "quantity": 1220 }
+    ]
+  }
+}</code></pre>
+    <p>Suppose it is desired to apply a single Lambda function,
+      “ship-val”, to each of the elements of the
+      “shipped” array.  Here is an example of an appropriate Map
+      State.</p>
+    <pre><code class="state">"Validate-All": {
+  "Type": "Map",
+  "InputPath": "$.detail",
+  "ItemsPath": "$.shipped",
+  "MaxConcurrency": 0,
+  "Iterator": {
+    "StartAt": "Validate",
+    "States": {
+      "Validate": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:us-east-1:123456789012:function:ship-val",
+        "End": true
+      }
+    }
+  },
+  "ResultPath": "$.detail.shipped",
+  "End": true
+}</code></pre>
+    <p>In the example above, the “ship-val” Lambda function
+      will be executed once for each element of the “shipped” field.
+      The input to one iteration will be:</p>
+    <pre><code class="json">{
+  "prod": "R31",
+  "dest-code": 9511,
+  "quantity": 1344
+}</code></pre>
+    <p>Suppose that the “ship-val” function also needs access to the
+      shipment’s courier, which would be the same in each iteration.
+      The <a href="#parameters">“Parameters”</a> field may be used to
+      construct the raw input for each iteration:</p>
+      <pre><code class="state">"Validate-All": {
+  "Type": "Map",
+  "InputPath": "$.detail",
+  "ItemsPath": "$.shipped",
+  "MaxConcurrency": 0,
+  "Parameters": {
+    "parcel.$": "$$.Map.Item.Value",
+    "courier.$": "$.delivery-partner"
+  },
+  "Iterator": {
+    "StartAt": "Validate",
+    "States": {
+      "Validate": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:us-east-1:123456789012:function:ship-val",
+        "End": true
+      }
+    }
+  },
+  "ResultPath": "$.detail.shipped",
+  "End": true
+}</code></pre>
+    <p>The “ship-val” Lambda function will be executed once for each element of
+      the array selected by “ItemsPath”. In the example above, the raw input to
+      one iteration, as specified by “Parameters”, will be:</p>
+    <pre><code class="json">{
+  "parcel": {
+    "prod": "R31",
+    "dest-code": 9511,
+    "quantity": 1344
+   },
+   "courier": "UQS"
+}</code></pre>
+    <p>In the examples above, the ResultPath results in the output being the same as
+      the input, with the “detail.shipped” field being overwritten by an array in
+      which each element is the output of the “ship-val” Lambda function as
+      applied to the corresponding input element.</p>
+    <h4 id='map-input-output'>Map State input/output processing</h4>
+    <p>The “InputPath” field operates as usual, selecting part of
+      the raw input - in the example, the value of the “detail” field -
+      to serve as the effective input.</p> 
+    <p>A Map State MAY have a “ItemsPath” field, whose value MUST be a
+      Reference Path.  The Reference Path is applied to the effective input
+      and MUST identify a field whose value is a JSON array.</p>
+    <p>The default value of “ItemsPath” is “$”, which is to say the whole
+      effective input.  So, if a Map State has neither an “InputPath” nor a
+      “ItemsPath” field, it is assuming that the raw input to the state will be
+      a JSON array.</p>
+    <p>The input to each invocation, by default, is a single element of the
+      array field identified by the “ItemsPath” value, but may be
+      overridden using the <a href="#parameters">“Parameters”</a> field.</p>
+    <p>In each iteration, within the Map state (but not child states
+      within an Iterator field), the Context Object will have an object field 
+      named “Map” which contains an object field named “Item” which
+      in turn contains an integer field named “Index” whose
+      value is the (zero-based) array index being processed in the
+      iteration and a field named “Value”, whose value is 
+      the array element being processed.</p>
+    <p>A Map state’s Result is an array containing one element for each
+      element of the ItemsPath input array, in the same order.</p>
+      <h4 id='map-concurrency'>Map State concurrency</h4>
+    <p>A Map state MAY have a non-negative integer “MaxConcurrency” field.
+      Its default value is zero, which places no limit on invocation
+      parallelism and requests the interpreter to execute the 
+      iterations as concurrently as possible.</p>
+    <p>If “MaxConcurrency” has a non-zero value, the interpreter will not allow
+      the number of concurrent iterations to exceed that value.</p>
+    <p>A MaxConcurrency value of 1 is special, having the effect that interpreter
+      will invoke the Iterator once for each array element in the order of their
+      appearance in the input, and will not start an iteration until
+      the previous iteration has completed execution.</p>
+      <h4 id='map-iterator'>Map State Iterator definition</h4>
+    <p>A Map State MUST contain an object field named “Iterator” which
+      MUST contain fields named “States” and “StartAt”, whose meanings are
+      exactly like those in the top level of a State Machine.</p>
+    <p>A state in the “States” field of an “Iterator” field MUST NOT have a
+      “Next” field that targets a field outside of that “States” field.
+      A state MUST NOT have a “Next” field which matches a state
+      name inside an “Iterator” field’s “States” field unless it is also
+      inside the same “States” field.</p>
+    <p>Put another way, states in an Iterator’s “States” field can transition
+      only to each other, and no state outside of that “States” field can
+      transition into it.</p>
+    <p>If any iteration fails, due to an unhandled error or by
+      transitioning to a Fail state, the entire Map state is
+      considered to have failed and all the iterations
+      are terminated. If the error is not handled by the Map
+      State, the interpreter should terminate the machine execution with an
+      error.</p>
+    <p>Unlike a Fail state, a Succeed state within a Map merely terminates its
+       own iteration. A Succeed state passes its input through as its output,
+       possibly modified by “InputPath” and “OutputPath”.</p>
     </div>
-    <div id="appendices">
+    <div id='appendices'>
       <h2>Appendices</h2>
-      <h3 id="appendix-a">Appendix A: Predefined Error Codes</h3>
+      <h3 id='appendix-a'>Appendix A: Predefined Error Codes</h3>
       <table cellpadding="5">
           <tr><th>Code</th><th>Description</th></tr>
           <tr><td>States.ALL</td><td><p>A wild-card which matches any Error Name.</p></td>
           </tr>
           <tr><td>States.Timeout</td><td><p>A Task State either ran longer than the
-              &#x201C;TimeoutSeconds&#x201D; value, or failed to heartbeat for a time
-              longer than the &#x201C;HeartbeatSeconds&#x201D; value.</p></td>
+              “TimeoutSeconds” value, or failed to heartbeat for a time
+              longer than the “HeartbeatSeconds” value.</p></td>
           </tr>
           <tr><td>States.TaskFailed</td><td><p>A Task State failed during the execution.</p></td>
           </tr>
           <tr><td>States.Permissions</td><td><p>A Task State failed because it had
               insufficient privileges to execute the specified code.</p></td>
           </tr>
-          <tr><td>States.ResultPathMatchFailure</td><td><p>A state&#x2019;s
-              &#x201C;ResultPath&#x201D; field cannot be applied to the input the state
+          <tr><td>States.ResultPathMatchFailure</td><td><p>A state’s
+              “ResultPath” field cannot be applied to the input the state
               received.</p></td> 
           </tr>
-	  <tr><td>States.ParameterPathFailure</td><td><p>Within a state&#x2019;s &#x201C;Parameters&#x201D;
-		field, the attempt to replace a field whose name ends in &#x201C;.$&#x201D; using
-		a Path failed.</p></td></tr>
+          <tr><td>States.ParameterPathFailure</td><td><p>Within a state’s “Parameters”
+                field, the attempt to replace a field whose name ends in “.$” using
+                a Path failed.</p></td></tr>
           <tr><td>States.BranchFailed</td><td><p>A branch of a
               Parallel state failed.</p></td>
           </tr>
