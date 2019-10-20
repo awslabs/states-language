@@ -923,9 +923,9 @@ $['store'][0]['book']</code></pre>
       <p>The values of the “And” and “Or” operators MUST be non-empty arrays
         of Choice Rules that MUST NOT contain “Next” fields; the
         “Next” field can only appear in a top-level Choice Rule.</p>
-      <p>The value of a “Not” operator MUST be a single Choice Rule, that
-        MUST NOT contain “Next” fields; the “Next” field can only
-        appear in a top-level Choice Rule.</p>
+      <p>You can create complex, nested Choice Rules using the "And", "Not",
+        and "Or" operators. However, the "Next" field can appear only
+        in a top-level Choice Rule.</p>
       <p>Choice states MAY have a “Default” field, which
         will execute if none of the Choice Rules match. The
         interpreter will raise a run-time States.NoChoiceMatched error if a
