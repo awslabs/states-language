@@ -368,7 +368,7 @@ $['store'][0]['book']</code></pre>
     "flagged": true,
     "parts": {
       "first.$": "$.vals[0]",
-      "last3.$": "$.vals[3:]"
+      "last3.$": "$.vals[-3:]"
     },
     "weekday.$": "$$.DayOfWeek",
     "formattedOutput.$": "States.Format('Today is {}', $$.DayOfWeek)"
